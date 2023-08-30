@@ -18,7 +18,7 @@
 
     <!-- <h1 class="h1">纯前端 JS ：二维码：生成、扫描、识别 (HTML版)</h1>
     <hr /> -->
-
+    
     <main class="main">
         <!-- <aside class="create">
             <input type="text" id="code" value="http://www.muguilin.com" placeholder="请在这里输入要生成的内容！" />
@@ -65,30 +65,32 @@
     <script src="./js/jsqr.min.js"></script>
     <script src="./js/base.js"></script>
     <script>
-        const result = document.querySelector('#result');
+      const result = document.querySelector('#result');
         const QrCode = new QrCodeRecognition({
             sweepId: '#canvas',
             uploadId: '#file',
             error: function (err) {
                 // 识别错误反馈
                 result.value = err;
+                alert('扫描失败',result.value)
             },
             seuccess: function (res) {
                 // 识别成功反馈
                 result.value = res.data;
+                alert('扫描成功',result.value)
             }
         });
-
+        
         // 扫一扫
         function sweep() {
-            result.value = '';
+          result.value = '';
             QrCode.sweep();
         };
-
+                
         // 从相册选择
         function upload() {
-            result.value = '';
-            QrCode.upload();
+        result.value = '';
+        QrCode.upload();
         };
     </script>
 
