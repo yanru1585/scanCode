@@ -35,7 +35,7 @@
                     src="https://raw.githubusercontent.com/MuGuiLin/QRCode/master/VueQRCode/src/assets/github.com.png"
                     alt="当前识别的二维码" /> -->
             <!-- </div> -->
-            <textarea class="result" id="result" cols="32" rows="6" placeholder="二维码识别结果！"></textarea>
+            <!-- <textarea class="result" id="result" cols="32" rows="6" placeholder="二维码识别结果！"></textarea> -->
             <canvas class="canvas" id="canvas"></canvas>
         <!-- </aside> -->
     <!-- </main> -->
@@ -43,7 +43,7 @@
     <!-- 二维码生成 -->
     <script src="./js/qrcode.js"></script>
     <script>
-        const text = document.querySelector('#code');
+        // const text = document.querySelector('#code');
         const qrcode = new QRCode(document.querySelector('#qrcode'), {
             text: "http://www.muguilin.com",
             width: 300,
@@ -65,23 +65,25 @@
     <script src="./js/jsqr.min.js"></script>
     <script src="./js/base.js"></script>
     <script>
-        const result = document.querySelector('#result');
+        // const result = document.querySelector('#result');
         const QrCode = new QrCodeRecognition({
             sweepId: '#canvas',
             uploadId: '#file',
             error: function (err) {
                 // 识别错误反馈
                 result.value = err;
+                alert('扫描失败',result.value)
             },
             seuccess: function (res) {
                 // 识别成功反馈
                 result.value = res.data;
+                alert('扫描成功',result.value)
             }
         });
-
+        let result=''
         // 扫一扫
         function sweep() {
-            result.value = '';
+            result= '';
             QrCode.sweep();
         };
         sweep()
